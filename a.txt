@@ -1,0 +1,23 @@
+
+Hardcoding different capabilities in the player is not a good idea;
+for example, our player can have grappling skill (to swing/climb on rope achhored to some point).
+
+In RTS games like commanods 2, we have different characters with different capabilities, and we should not hardcode
+any capability in them, for it will render inefficient in future and hard to modify.
+
+Instead, we should have a list of Skills[] for each character & all the skills shouldf be added in an "additive" fashion, that is,
+in a way that the skill mechanic handles itself and player himself is not aware of the skill. Thus whatever the player chacrter will be,
+if it has skill in his skills[], the skill will render itself.
+
+The skill should listen to inputs, user actions and everything in environment and perform the work without the parent player
+knowing anything.
+
+In Grappling Hook Mechanics, we will create a scene with a rope, an anchor joint, and a rigid body. When it is the time for
+grappling hook to trigger (that is user ahs pressed the action button), the skill will automatically adds the player character body as child of the
+grappling hook rigid body, and uses the raycast to detect the achor point nearby, and expands the line2D to visualize the rope.
+
+And when its time to stop the animation of grapling mechanics, the skill itself resets it and sets the player to its orignal form.
+
+
+Keywords:
+	Spiderman mechanics, grappling hook, swinging effect, rope swinging, poendulum, pin joint swinging, ... [and variations]

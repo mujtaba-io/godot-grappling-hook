@@ -1,2 +1,0 @@
-extends Line2D
-
