@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl8p0qa4xogrc"]
+
+[ext_resource type="Script" path="res://Grappling Hook System/GrapplingHookSystem.gd" id="1_xdd6m"]
+[ext_resource type="Texture2D" uid="uid://bgsoesjwicybu" path="res://assets/chain/chain.png" id="2_rwa5u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60oag"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sk66n"]
+
+[node name="GrapplingHookSystem" type="Node2D" node_paths=PackedStringArray("grapple_anchor", "player_anchor", "rope")]
+script = ExtResource("1_xdd6m")
+grapple_anchor = NodePath("GrappleAnchor")
+player_anchor = NodePath("PlayerAnchor")
+rope = NodePath("Rope")
+
+[node name="GrappleAnchor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrappleAnchor"]
+shape = SubResource("RectangleShape2D_60oag")
+
+[node name="Polygon2D" type="Polygon2D" parent="GrappleAnchor"]
+color = Color(0.375984, 0.52938, 0.416358, 1)
+polygon = PackedVector2Array(-8, -10, 8, -10, 10, -8, 10, 8, 8, 10, -8, 10, -10, 8, -10, -8)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../GrappleAnchor")
+node_b = NodePath("../PlayerAnchor")
+softness = 1.0
+
+[node name="Rope" type="Line2D" parent="."]
+texture_filter = 3
+texture_repeat = 2
+points = PackedVector2Array(0, 0, 0, 113.525)
+width = 4.0
+texture = ExtResource("2_rwa5u")
+texture_mode = 1
+
+[node name="PlayerAnchor" type="RigidBody2D" parent="."]
+position = Vector2(0, 113)
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 3.0
+linear_damp = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnchor"]
+shape = SubResource("CircleShape2D_sk66n")

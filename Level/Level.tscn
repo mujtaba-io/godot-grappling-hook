@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://diq10y5jkoh7p"]
+
+[ext_resource type="PackedScene" uid="uid://bl8p0qa4xogrc" path="res://Grappling Hook System/GrapplingHookSystem.tscn" id="1_jrn2p"]
+[ext_resource type="PackedScene" uid="uid://cb3r6lmo02u26" path="res://Player/Player.tscn" id="2_iqvou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmd47"]
+size = Vector2(2048, 493)
+
+[node name="Level" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1312.0
+offset_top = -1040.0
+offset_right = 968.0
+offset_bottom = 856.0
+color = Color(0.806729, 0.880256, 0.947063, 1)
+
+[node name="GrapplingHookSystem" parent="." instance=ExtResource("1_jrn2p")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_iqvou")]
+position = Vector2(-194, 171)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-112, 441.5)
+shape = SubResource("RectangleShape2D_kmd47")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0.425219, 0.468696, 0.25679, 1)
+polygon = PackedVector2Array(-1136, 192, 904, 192, 912, 680, -1120, 680)
